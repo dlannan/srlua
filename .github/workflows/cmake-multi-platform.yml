@@ -31,17 +31,17 @@ jobs:
     - working-directory: LuaJIT-2.1
 
     - name: Build Windows
-      if: startsWith(matrix.os, 'Windows')
-        run: |
-          msvcbuild.bat
+      if: matrix.os == 'windows-latest'
+      run: |
+        msvcbuild.bat
     - name: Build Linux
-      if: startsWith(matrix.os, 'Linux')
-        run: |
-          make
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        make
     - name: Build MacOS
-      if: startsWith(matrix.os, 'macOS')
-        run: |
-          make
+      if: matrix.os == 'macos-latest'
+      run: |
+        make
 
     # - name: Test
     #   working-directory: ${{ steps.strings.outputs.build-output-dir }}
