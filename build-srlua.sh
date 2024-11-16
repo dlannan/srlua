@@ -9,7 +9,7 @@
 PLATFORM=$1
 
 # Default compiler and linker settings
-BASE_INCLUDE="-I./ -I/usr/include -I/usr/local/include"
+BASE_INCLUDE="-I./ -I/usr/include -I/usr/local/include -I./src -I./LuaJIT-2.1/src"
 BASE_INLCUDE_LIB="-L/usr/local/include -L/usr/include "
 
 COMPILE_FLAGS="-lpthread -lm"
