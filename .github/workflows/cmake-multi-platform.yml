@@ -28,18 +28,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+    - working-directory: LuaJIT-2.1
+
     - name: Build Windows
-      run: |
-          cd LuaJIT-2.1/src
-          msvcbuild.bat
+      if: startsWith(matrix.os, 'Windows')
+        run: msvcbuild.bat
     - name: Build Linux
-      run: |
-          cd LuaJIT-2.1/src
-          make
+      if: startsWith(matrix.os, 'Linux')
+        run: make
     - name: Build MacOS
-      run: |
-          cd LuaJIT-2.1/src
-          make
+      if: startsWith(matrix.os, 'macOS')
+        run: make
 
     # - name: Test
     #   working-directory: ${{ steps.strings.outputs.build-output-dir }}
