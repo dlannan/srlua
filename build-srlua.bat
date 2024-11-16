@@ -6,6 +6,6 @@ set DEFS=/D_WIN32
 
 call cd LuaJIT-2.1\src
 call msvcbuild.bat
-call cd ..
+call cd ..\..
 call cl.exe %DEFS% /Fe:bin\windows\srlua.exe src\srlua.c %LINK_FLAGS%
 call cl.exe %DEFS% /Fe:bin\windows\glue.exe src\glue.c %LINK_FLAGS%
