@@ -27,16 +27,16 @@ jobs:
         build_type: [Release]
 
     steps:
-        - uses: actions/checkout@v4
-        - working-directory: LuaJIT-2.1
-        - name: Build
-            run: |
-                  if [ "${{matrix.os}}" == "windows-latest" ]; then
-                    msvcbuild.bat
-                  elif [ "${{matrix.os}}" == "linux-latest" ]; then
-                    make
-                  elif [ "${{matrix.os}}" == "macos-latest" ]; then
-                    make
+      - uses: actions/checkout@v4
+      - working-directory: LuaJIT-2.1
+      - name: Build
+        run: |
+              if [ "${{matrix.os}}" == "windows-latest" ]; then
+                msvcbuild.bat
+              elif [ "${{matrix.os}}" == "linux-latest" ]; then
+                make
+              elif [ "${{matrix.os}}" == "macos-latest" ]; then
+                make
 
     # - name: Test
     #   working-directory: ${{ steps.strings.outputs.build-output-dir }}
