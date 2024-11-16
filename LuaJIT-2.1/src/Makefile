@@ -626,8 +626,8 @@ amalg:
 	$(MAKE) all "LJCORE_O=ljamalg.o"
 
 clean:
-  $(HOST_RM) $(ALL_RM)
-  echo "clean"
+	$(HOST_RM) $(ALL_RM)
+	echo "clean"
 
 libbc:
 	./$(LUAJIT_T) host/genlibbc.lua -o host/buildvm_libbc.h $(LJLIB_C)
