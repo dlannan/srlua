@@ -21,7 +21,7 @@ jobs:
             fetch-depth: 2
         - name: Build srlua and luajit for Linux
           run: |
-            cd ./LuaJIT-2.1/src && make       
+            ./build-srlua.sh linux      
         - name: Archive results
           uses: actions/upload-artifact@v4
           with:
@@ -29,6 +29,8 @@ jobs:
             path: |
               ./bin/linux/luajit
               ./bin/linux/luajit.so
+              ./bin/linux/srlua
+              ./bin/linux/glue
 
     build-windows:
       runs-on: windows-latest
@@ -36,8 +38,7 @@ jobs:
         - uses: actions/checkout@v4
         - uses: ilammy/msvc-dev-cmd@v1.4.1
         - name: Build srlua and luajit for Win64
-          run: |
-            cd ./LuaJIT-2.1/src && msvcbuild.bat
+          run: ./build-srlua.bat
           shell: bash
            
         - name: Archive results
@@ -48,14 +49,15 @@ jobs:
               ./bin/windows/luajit.exe
               ./bin/windows/lua51.dll
               ./bin/windows/luajit.lib
+              ./bin/windows/srlua.exe
+              ./bin/windows/glue.exe
 
     build-macos:
       runs-on: macos-latest
       steps:
         - uses: actions/checkout@v4
         - name: Build srlua and luajit for macos
-          run: |
-            cd ./LuaJIT-2.1/src && make MACOSX_DEPLOYMENT_TARGET=10.14
+          run: ./build-sokol.sh macosx
               
         - name: Archive results
           uses: actions/upload-artifact@v4
@@ -63,7 +65,9 @@ jobs:
             name: macOS luajit
             path: |
               ./bin/macos/luajit
-              ./bin/linux/luajit.so
+              ./bin/macos/luajit.so
+              ./bin/macos/srlua
+              ./bin/macos/glue
     # build-macos-arm64:
     #   runs-on: macos-14
     #   steps:
@@ -76,13 +80,6 @@ jobs:
     #       with:
     #         name: macOS arm64 sokol
     #         path: |
-    #           ./bin/libsokol_dll_macos_arm64.so 
-    #           ./bin/libsokol_debug_dll_macos_arm64.so 
-    #           ./bin/libsokol_shape_dll_macos_arm64.so
-    #           ./bin/libsokol_nuklear_dll_macos_arm64.so
-    #           ./bin/libhmm_dll_macos_arm64.so
-    #           ./bin/libremotery_dll_macos_arm64.so
-    #           ./bin/libstb_dll_macos_arm64.so
     # build-ios64:
     #   runs-on: macos-latest
     #   steps:
@@ -95,13 +92,6 @@ jobs:
     #       with:
     #         name: ios64 sokol
     #         path: |
-    #           ./bin/libsokol_dll_ios64.so 
-    #           ./bin/libsokol_debug_dll_ios64.so 
-    #           ./bin/libsokol_shape_dll_ios64.so
-    #           ./bin/libsokol_nuklear_dll_ios64.so
-    #           ./bin/libhmm_dll_ios64.so
-    #           ./bin/libremotery_dll_ios64.so
-    #           ./bin/libstb_dll_ios64.so
     # build-android:
     #   runs-on: ubuntu-latest
     #   steps:
