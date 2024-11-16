@@ -63,7 +63,7 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-    g++ -xobjective-c++ ${BASE_INCLUDE} ${DEFS} src/${tgt[0]}.c ${COMPILE_FLAGS} -o ./bin/macos/${tgt[1]} -L./bin/macos -lluajit
+    gcc ${BASE_INCLUDE} ${DEFS} src/${tgt[0]}.c ${COMPILE_FLAGS} -o ./bin/macos/${tgt[1]} -L./bin/macos -lluajit
 done
 
 # ----------------------------- BUILD MACOS ARM64 ---------------------------------
@@ -84,7 +84,7 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-    g++ -xobjective-c++ ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos64/${tgt[1]} -L./bin/macos64 -lluajit
+    gcc ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos64/${tgt[1]} -L./bin/macos64 -lluajit
 done
 
 # # ----------------------------- BUILD IOS64 ---------------------------------
