@@ -52,7 +52,7 @@ echo "Luajit Build"
 cd LuaJIT-2.1/src
 make MACOSX_DEPLOYMENT_TARGET=12.03
 cp ./luajit ../../bin/macos/
-cp ./libluajit.dylib ../../bin/macos/
+cp ./libluajit.so ../../bin/macos/
 cd ../..
 
 echo srlua Build
@@ -63,7 +63,7 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-    g++ -xobjective-c++ ${BASE_INCLUDE} ${DEFS} src/${tgt[0]}.c ${COMPILE_FLAGS} -o ./bin/macos/${tgt[1]} -L./bin/macos -lluajit
+    g++ -xobjective-c++ ${BASE_INCLUDE} ${DEFS} src/${tgt[0]}.c ${COMPILE_FLAGS} -o ./bin/macos/${tgt[1]} -L./bin/macos -llibluajit
 done
 
 # ----------------------------- BUILD MACOS ARM64 ---------------------------------
