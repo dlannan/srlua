@@ -71,7 +71,7 @@ elif [ "${PLATFORM}" = "macos_arm64" ]; then
 echo "MacOS Arm64"
 echo "Luajit Build"
 cd LuaJIT-2.1/src
-make MACOSX_DEPLOYMENT_TARGET=10.14
+make MACOSX_DEPLOYMENT_TARGET=12.03
 cp ./luajit ../../bin/macos64/
 cp ./libluajit.so ../../bin/macos64/
 cd ../..
