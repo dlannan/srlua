@@ -31,8 +31,8 @@ echo "Linux."
 echo "Luajit Build"
 cd LuaJIT-2.1/src
 make
-cp luajit ../../bin/linux/
-cp libluajit.so ../../bin/linux/
+cp ./luajit ../../bin/linux/
+cp ./libluajit.so ../../bin/linux/
 cd ../..
 
 echo srlua Build
@@ -51,8 +51,8 @@ echo "MacOS."
 echo "Luajit Build"
 cd LuaJIT-2.1/src
 make MACOSX_DEPLOYMENT_TARGET=10.14
-cp luajit ../../bin/macos/
-cp libluajit.so ../../bin/macos/
+cp ./luajit ../../bin/macos/
+cp ./libluajit.so ../../bin/macos/
 cd ../..
 
 echo srlua Build
@@ -72,8 +72,8 @@ echo "MacOS Arm64"
 echo "Luajit Build"
 cd LuaJIT-2.1/src
 make MACOSX_DEPLOYMENT_TARGET=10.14
-cp luajit ../../bin/macos64/
-cp luajit.so ../../bin/macos64/
+cp ./luajit ../../bin/macos64/
+cp ./luajit.so ../../bin/macos64/
 cd ../..
 
 echo srlua Build
