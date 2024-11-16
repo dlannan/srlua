@@ -50,7 +50,7 @@ elif [ "${PLATFORM}" = "macosx" ]; then
 echo "MacOS."
 echo "Luajit Build"
 cd LuaJIT-2.1/src
-make MACOSX_DEPLOYMENT_TARGET=10.14
+make MACOSX_DEPLOYMENT_TARGET=12.03
 cp ./luajit ../../bin/macos/
 cp ./libluajit.so ../../bin/macos/
 cd ../..
