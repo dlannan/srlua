@@ -21,8 +21,7 @@ jobs:
             fetch-depth: 2
         - name: Build srlua and luajit for Linux
           run: |
-            cd ./LuaJIT-2.1/src
-            make       
+            cd ./LuaJIT-2.1/src && make       
         - name: Archive results
           uses: actions/upload-artifact@v4
           with:
@@ -38,8 +37,7 @@ jobs:
         - uses: ilammy/msvc-dev-cmd@v1.4.1
         - name: Build srlua and luajit for Win64
           run: |
-            cd ./LuaJIT-2.1/src
-            msvcbuild.bat
+            cd ./LuaJIT-2.1/src && msvcbuild.bat
           shell: bash
            
         - name: Archive results
@@ -50,15 +48,14 @@ jobs:
               ./bin/windows/luajit.exe
               ./bin/windows/lua51.dll
               ./bin/windows/luajit.lib
-              
+
     build-macos:
       runs-on: macos-latest
       steps:
         - uses: actions/checkout@v4
         - name: Build srlua and luajit for macos
           run: |
-            cd ./LuaJIT-2.1/src
-            make 
+            cd ./LuaJIT-2.1/src && make 
               
         - name: Archive results
           uses: actions/upload-artifact@v4
