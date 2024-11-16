@@ -29,20 +29,18 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Build
+    - if: runner.os == "Windows"
       run:  |
-            if[ "$RUNNER_OS" == "Linux" ]; then 
-              cd LuaJIT-2.1/src
-              make
-            elif [ "$RUNNER_OS" == "Windows" ]; then 
-              cd LuaJIT-2.1/src
-              msvcbuild.bat
-            elif [ "$RUNNER_OS" == "macOS" ]; then 
-              cd LuaJIT-2.1/src
-              make
-            else 
-              echo "$RUNNER_OS not supported."
-              exit 1
-            fi
+            cd LuaJIT-2.1/src
+            msvcbuild.bat
+    - if: runner.os == "Linux"
+      run:  |
+            cd LuaJIT-2.1/src
+            make
+    - if: runner.os == "macOS"
+      run:  |
+            cd LuaJIT-2.1/src
+            make
       shell: bash
 
     # - name: Test
