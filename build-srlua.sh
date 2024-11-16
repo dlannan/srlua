@@ -42,7 +42,7 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-    gcc ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/linux/${tgt[1]} ${COMPILE_FLAGS}
+    gcc ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/linux/${tgt[1]} ${COMPILE_FLAGS} -L ./bin/linux -lluajit
 done
 
 # ----------------------------- BUILD MACOS ---------------------------------
@@ -63,7 +63,7 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-    g++ -xobjective-c++ ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos/${tgt[1]}
+    g++ -xobjective-c++ ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos/${tgt[1]} -L ./bin/macos -lluajit
 done
 
 # ----------------------------- BUILD MACOS ARM64 ---------------------------------
