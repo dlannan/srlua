@@ -55,7 +55,7 @@ jobs:
         - uses: actions/checkout@v4
         - name: Build srlua and luajit for macos
           run: |
-            cd ./LuaJIT-2.1/src && make 
+            cd ./LuaJIT-2.1/src && make MACOSX_DEPLOYMENT_TARGET=10.14
               
         - name: Archive results
           uses: actions/upload-artifact@v4
