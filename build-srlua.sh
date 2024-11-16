@@ -28,20 +28,34 @@ TARGET_FILES=(tgt01[@] tgt02[@])
 # ----------------------------- BUILD LINUX ---------------------------------
 if [ "${PLATFORM}" = "linux" ]; then
 echo "Linux."
+echo "Luajit Build"
+cd LuaJIT-2.1/src
+make
+cp luajit ../../bin/linux
+cp luajit.so ../../bin/linux
+cd ../..
+
+echo srlua Build
 COMPILE_FLAGS="$COMPILE_FLAGS -lX11 -lXi -lXcursor -lGL -lpthread -lasound"
 
 COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-
-    REMOTERY=
     gcc ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/linux/${tgt[1]} ${COMPILE_FLAGS}
 done
 
 # ----------------------------- BUILD MACOS ---------------------------------
 elif [ "${PLATFORM}" = "macosx" ]; then
 echo "MacOS."
+echo "Luajit Build"
+cd LuaJIT-2.1/src
+make MACOSX_DEPLOYMENT_TARGET=10.14
+cp luajit ../../bin/macos
+cp luajit.so ../../bin/macos
+cd ../..
+
+echo srlua Build
 DEFS="-D__APPLE__"
 COMPILE_FLAGS="-framework Cocoa -framework QuartzCore -framework AudioToolbox -framework OpenGL $COMPILE_FLAGS"
 
@@ -49,13 +63,20 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-
     g++ -xobjective-c++ ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos/${tgt[1]}
 done
 
 # ----------------------------- BUILD MACOS ARM64 ---------------------------------
 elif [ "${PLATFORM}" = "macos_arm64" ]; then
 echo "MacOS Arm64"
+echo "Luajit Build"
+cd LuaJIT-2.1/src
+make MACOSX_DEPLOYMENT_TARGET=10.14
+cp luajit ../../bin/macos64
+cp luajit.so ../../bin/macos64
+cd ../..
+
+echo srlua Build
 DEFS="-D__APPLE__ -D__APPLE__"
 COMPILE_FLAGS="-arch arm64 -framework Cocoa -framework QuartzCore -framework AudioToolbox -framework OpenGL $COMPILE_FLAGS"
 
@@ -63,7 +84,6 @@ COUNT=${#TARGET_FILES[@]}
 for ((i=0; i<$COUNT; i++))
 do
     declare -a tgt=(${!TARGET_FILES[i]})
-
     g++ -xobjective-c++ ${BASE_INCLUDE} ${tgt[2]} ${DEFS} src/${tgt[0]}.c -o ./bin/macos64/${tgt[1]} 
 done
 
