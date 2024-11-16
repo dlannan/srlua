@@ -626,7 +626,7 @@ amalg:
 	$(MAKE) all "LJCORE_O=ljamalg.o"
 
 clean:
-#   $(HOST_RM) $(ALL_RM)
+  $(HOST_RM) $(ALL_RM)
   echo "clean"
 
 libbc:
