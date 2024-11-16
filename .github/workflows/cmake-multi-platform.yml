@@ -28,7 +28,7 @@ jobs:
             name: Linux luajit
             path: |
               ./bin/linux/luajit
-              ./bin/linux/luajit.so
+              ./bin/linux/libluajit.so
               ./bin/linux/srlua
               ./bin/linux/glue
 
@@ -65,7 +65,7 @@ jobs:
             name: macOS luajit
             path: |
               ./bin/macos/luajit
-              ./bin/macos/luajit.so
+              ./bin/macos/libluajit.so
               ./bin/macos/srlua
               ./bin/macos/glue
     # build-macos-arm64:

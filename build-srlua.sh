@@ -32,7 +32,7 @@ echo "Luajit Build"
 cd LuaJIT-2.1/src
 make
 cp luajit ../../bin/linux
-cp luajit.so ../../bin/linux
+cp libluajit.so ../../bin/linux
 cd ../..
 
 echo srlua Build
@@ -52,7 +52,7 @@ echo "Luajit Build"
 cd LuaJIT-2.1/src
 make MACOSX_DEPLOYMENT_TARGET=10.14
 cp luajit ../../bin/macos
-cp luajit.so ../../bin/macos
+cp libluajit.so ../../bin/macos
 cd ../..
 
 echo srlua Build

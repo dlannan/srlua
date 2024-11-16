@@ -50,7 +50,7 @@ typedef struct
 
 static const char *myget(lua_State *L, void *data, size_t *size)
 {
- State* s=data;
+ State* s=(State* )data;
  size_t n;
  (void)L;
  n=(sizeof(s->buff)<=s->size)? sizeof(s->buff) : s->size;
@@ -90,7 +90,7 @@ static void load(lua_State *L, const char *name)
 static int pmain(lua_State *L)
 {
  int argc=lua_tointeger(L,1);
- char** argv=lua_touserdata(L,2);
+ char** argv=(char**)lua_touserdata(L,2);
  int i;
  lua_gc(L,LUA_GCSTOP,0);
  luaL_openlibs(L);
@@ -124,7 +124,7 @@ static void fatal(const char* progname, const char* message)
 
 char* getprog() {
   int nsize = _PATH_MAX + 1;
-  char* progdir = malloc(nsize * sizeof(char));
+  char* progdir = (char*)malloc(nsize * sizeof(char));
   char *lb;
   int n = 0;
 #if defined(__CYGWIN__)
