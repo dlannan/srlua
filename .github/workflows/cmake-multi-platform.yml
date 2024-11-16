@@ -28,17 +28,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - working-directory: LuaJIT-2.1
     - name: Build Windows
       - if: matrix.os == 'windows-latest'
+      - working-directory: LuaJIT-2.1
         run: |
           msvcbuild.bat
     - name: Build Linux
       - if: matrix.os == 'ubuntu-latest'
+      - working-directory: LuaJIT-2.1
         run: |
           make
     - name: Build MacOS
       - if: matrix.os == 'macos-latest'
+      - working-directory: LuaJIT-2.1
         run: |
           make
 
