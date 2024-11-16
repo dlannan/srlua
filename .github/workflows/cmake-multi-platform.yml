@@ -31,15 +31,15 @@ jobs:
     - working-directory: LuaJIT-2.1
 
     - name: Build Windows
-      if: matrix.os == 'windows-latest'
+      - if: matrix.os == 'windows-latest'
         run: |
           msvcbuild.bat
     - name: Build Linux
-      if: matrix.os == 'ubuntu-latest'
+      - if: matrix.os == 'ubuntu-latest'
         run: |
           make
     - name: Build MacOS
-      if: matrix.os == 'macos-latest'
+      - if: matrix.os == 'macos-latest'
         run: |
           make
 
