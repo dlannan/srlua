@@ -1,3 +1,14 @@
+
+# srlua
+
+This is a fork of the brilliant original srlua.
+The tool has ahd a little modification to be able to handle a combine.lua
+script that allows the building of multiple lua scripts into a single 
+executable.
+
+
+-----
+
 This is a self-running Lua interpreter. It is meant to be combined with a
 Lua program (which may be in either text or precompiled form) into a single,
 stand-alone program that will run the given Lua program when it is run.
