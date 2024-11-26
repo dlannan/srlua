@@ -2,10 +2,42 @@
 # srlua
 
 This is a fork of the brilliant original srlua.
+
 The tool has ahd a little modification to be able to handle a combine.lua
 script that allows the building of multiple lua scripts into a single 
 executable.
 
+## Usage
+
+### Combine
+
+If you need to first combine many lua scripts, use the combine.lua like so:
+
+```./bin/windows/luajit.exe combine.lua main_1.lua main_2.lua -L lib_1.lua lib_2.lua```
+
+The above script takes main_1 and main_2 as the primary executable files (they will be 
+executed upon running). The files after the -L switch are preloaded lua script 
+packages that will be referenced the same as they would be with require in lua.
+
+If main_1 has ```local mylib_1 = require("lib_1")``` then it will load 
+lib_1 into the mylib_1 variable. 
+
+All requires should use platform specific sfile separators or dot notation.
+
+The resulting output will be a luac.out file that can then be used by srlua.
+
+### srlua
+
+Using the combine output to build the executable.
+
+```./bin/windows/glue.exe ./bin/windows/srlua.exe luac.out mynewexe.exe```
+
+The name of luac.out can be modified by editing the combine.lua script.
+
+The resulting executable should run on the target os directly. 
+
+In the case of Windows, it is necessary to include the lua51.dll with any 
+executable produced, since it will attempt to load this dll.
 
 -----
 
